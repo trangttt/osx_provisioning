@@ -2,6 +2,7 @@
 - hosts: local
   connection: local
   remote_user: trangtt
+  become: false
   roles:
       - osx
   
