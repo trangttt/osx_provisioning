@@ -3,3 +3,24 @@
 #- include: preferences.yml
 #- include: cask.yml
 #- include: brew.yml
+    #- name: copy folder
+      #copy: src=init dest={{ansible_env.HOME}}/
+
+
+    #- name: echo $HOME
+      #shell: |
+          #osascript -e 'tell application "Terminal"'
+          #osascript -e 'do shell script "echo $HOME"'
+          #osascript -e 'end tell' 
+
+    #- name: setting up Terminal
+      #shell: osascript {{ansible_env.HOME}}/init/test.scpt
+
+    #- name: setting up Terminal
+      #shell: osascript {{ansible_env.HOME}}/init/SolarizedDarkTheme.scpt
+      #
+      #
+    - name: copy test
+      copy: src=fonts/ dest={{ansible_env.HOME}}/init/fonts/
+
+

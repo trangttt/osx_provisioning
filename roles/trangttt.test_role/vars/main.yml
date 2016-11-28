@@ -1,0 +1,6 @@
+---
+# vars file for test_role
+members:
+    - worker
+    - lawyer
+    - teacher

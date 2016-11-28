@@ -39,7 +39,7 @@ homebrew_packages:
     - zsh
     - zsh-completions
     - ssh-copy-id
-    - pv
+    - pv #monitor data through pipes
 
 
 
