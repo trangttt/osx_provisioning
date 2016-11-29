@@ -109,19 +109,18 @@ ok
 
 action "Install zsh zsh-completions"
 require_brew zsh zsh-completions
-ok
 
 #########################################################################
 # Continue using Ansible
 #########################################################################
 
-running "Checking ansible install."
+running "Checking ansible install...."
 ansible --version >/dev/null 2>&1
 if [[ $? != 0  ]]; then
     action "Installing ansible using brew."
     require_brew ansible
 else
-    ok "Ansible is already installed."
+    ok "Installed."
 fi
 
 action "Using ansible to automate provisioning"
@@ -145,7 +144,7 @@ fi
 action "Install zprezto"
 running "Checking zprezto installed...."
 if [[ -d "${ZDOTDIR:-$HOME}/.zprezto" ]] ; then
-    ok "Installed."
+    ok
 else 
     echo
     running "Installing zprezto..."
@@ -186,16 +185,16 @@ source ./lib_sh/config_git.sh
 # Install tmux plugins
 ########################################################################
 action "Install tmux plugins"
-running "Checking tpm plugins install."
+running "Checking TPM install...."
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm >/dev/null 2>&1
 fi
 ok
 
-running "Install plugins using tpm....."
+running "Install plugins using TPM....."
 ~/.tmux/plugins/tpm/bin/install_plugins >/dev/null 2>&1
 if [[ $? == 0  ]] ; then
-    ok
+    ok 
 else 
     error "tmux plugins installation failed."
 fi
