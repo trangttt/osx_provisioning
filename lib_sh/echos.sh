@@ -36,7 +36,8 @@ function running() {
 }
 
 function action() {
-    echo -e "\n${COL_YELLOW}[action]:$COL_RESET\n ⇒ $1..."
+    echo -e "\n${COL_YELLOW}[action]:$COL_RESET $1... \n"
+    #echo -e "\n${COL_YELLOW}[action]:$COL_RESET\n ⇒ $1..."
 }
 
 function warn() {
