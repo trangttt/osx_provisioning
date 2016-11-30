@@ -71,16 +71,20 @@ if [[ $? != 0 ]]; then
 else
   ok
   # Make sure we’re using the latest Homebrew
-  running "updating homebrew"
-  brew update
-  ok
+  bot "do you want updating homebrew?"
+  read -r -p "run brew update? [y|N]" response
+  if [[ $response =~ ^(y|yes|Y) ]]; then
+      action "update brew....."
+      brew update
+      ok "brew updated."
+  fi
   bot "before installing brew packages, we can upgrade any outdated packages."
   read -r -p "run brew upgrade? [y|N] " response
   if [[ $response =~ ^(y|yes|Y) ]];then
       # Upgrade any already-installed formulae
       action "upgrade brew packages..."
       brew upgrade
-      ok "brews updated..."
+      ok "brews packages upgraded."
   else
       ok "skipped brew package upgrades.";
   fi
@@ -203,6 +207,12 @@ fi
 # Install vim plugins
 ########################################################################
 action "Installing vim plugins"
-vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa
+if [[ ! -e ~/.vimrc ]]; then
+    error "~/.vimrc missing."
+    exit 2
+else
+    vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa
+    ok
+fi
 
 
