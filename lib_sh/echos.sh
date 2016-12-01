@@ -37,6 +37,10 @@ function ok() {
     echo -e "${COL_GREEN}[ok]${COL_RESET} "$1
 }
 
+function fail() {
+    echo -e "${COL_RED}[fail]${COL_RESET} "$1
+}
+
 function bot() {
     echo -e "\n${COL_CYAN}\[._.]/ - "$1"${COL_RESET} "
 }

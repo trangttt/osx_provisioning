@@ -1,6 +1,7 @@
 ---
 # tasks file for osx
-#- include: preferences.yml
+#- include: test.yml
+- include: preferences.yml
 #- include: cask.yml
 #- include: brew.yml
     #- name: copy folder
@@ -20,7 +21,7 @@
       #shell: osascript {{ansible_env.HOME}}/init/SolarizedDarkTheme.scpt
       #
       #
-    - name: copy test
-      copy: src=fonts/ dest={{ansible_env.HOME}}/init/fonts/
+    #- name: copy test
+      #copy: src=fonts/ dest={{ansible_env.HOME}}/init/fonts/
 
 
