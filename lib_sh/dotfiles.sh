@@ -52,7 +52,6 @@ link_dotfiles () {
     bot "Back up old dotfiles and link new files"
 	
 	cd ~
-    mkdir ~/dotfiles_backup >/dev/null 2>&1
 	now=$(date +"%Y.%m.%d.%H.%M.%S")
 
 	for file in "${trangtt_dotfiles_files[@]}"; do
@@ -62,14 +61,14 @@ link_dotfiles () {
 	    running "${file}"
 	    # if the file exists:
 	    if [[ -e ~/.$file ]]; then
-	        mkdir -p ~/.dotfiles_backup/$now
-	        mv ~/.$file ~/.dotfiles_backup/$now/$file
-	        echo "backup ~/.$file saved as ~/.dotfiles_backup/$now/$file"
+	        mkdir -p ~/dotfiles_backup/$now
+	        mv ~/.$file ~/dotfiles_backup/$now/$file
+	        echo "backup ~/.$file saved as ~/dotfiles_backup/$now/$file"
 	    fi
 	    # symlink might still exist
 	    unlink ~/.$file > /dev/null 2>&1
 	    # create the link
-	    ln -s ~/.dotfiles/$file ~/.$file
+	    ln -s ~/dotfiles/$file ~/.$file
 	    echo -en '\tlinked ';ok
 	done
     popd >/dev/null 2>&1
