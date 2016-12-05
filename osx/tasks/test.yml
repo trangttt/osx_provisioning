@@ -1,0 +1,26 @@
+---
+- name: Expand General, OpenWith, Privileges
+  command: >
+        defaults write com.apple.finder FXInfoPanesExpanded -dict 
+            General -bool true 
+            OpenWith -bool true 
+            Privileges -bool true
+#- name: Menu items
+  #osx_defaults:
+    #domain: com.apple.systemuiserver
+    #key: menuExtras
+    #type: array 
+    #array_add: true
+    #value: 
+        #- /System/Library/CoreServices/Menu Extras/Bluetooth.menu
+        #- /System/Library/CoreServices/Menu Extras/AirPort.menu
+        #- /System/Library/CoreServices/Menu Extras/Battery.menu
+        #- /System/Library/CoreServices/Menu Extras/Clock.menu 
+        #[
+        #"/System/Library/CoreServices/Menu Extras/Volume.menu" ,
+        #"/System/Library/CoreServices/Menu Extras/TextInput.menu" ,
+        #"/System/Library/CoreServices/Menu Extras/AirPort.menu" ,
+        #"/System/Library/CoreServices/Menu Extras/Battery.menu" ,
+        #"/System/Library/CoreServices/Menu Extras/Clock.menu" 
+        #]
+

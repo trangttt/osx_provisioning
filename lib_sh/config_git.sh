@@ -25,7 +25,7 @@ if [[ $? = 0 ]]; then
   if [[ ! "$firstname" ]];then
     response='n'
   else
-    echo -e "I see that your full name is $COL_YELLOW$firstname $lastname$COL_RESET"
+    echo -e "I see that your full name is ${COL_YELLOW}${firstname} ${lastname}${COL_RESET}"
     read -r -p "Is this correct? [Y|n] " response
   fi
 
@@ -40,7 +40,7 @@ if [[ $? = 0 ]]; then
   if [[ ! $email ]];then
     response='n'
   else
-    echo -e "The best I can make out, your email address is $COL_YELLOW$email$COL_RESET"
+    echo -e "The best I can make out, your email address is ${COL_YELLOW}${email}${COL_RESET}"
     read -r -p "Is this correct? [Y|n] " response
   fi
 
@@ -70,6 +70,8 @@ running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $em
     sed -i 's/GITHUBEMAIL/'$email'/' ${homedir}/.gitconfig;
     sed -i 's/GITHUBUSER/'$githubuser'/' ${homedir}/.gitconfig;
   fi
+else
+    ok "Git already initialized"
 fi
 
 

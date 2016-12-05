@@ -46,7 +46,7 @@ function bot() {
 }
 
 function running() {
-    echo -en "${COL_BLUE} ⇒ ${COL_RESET}"$1": "
+    echo -en "${COL_BLUE} ⇒ ${COL_RESET} "$1": "
 }
 
 function action() {

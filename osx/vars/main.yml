@@ -8,72 +8,74 @@ dotfiles_home: "~"
 dotfiles_repo_accept_hostkey: yes
 dotfiles_repo_local_destination: "~/dotfiles"
 dotfiles_files:
-  #- bashrc
-  #- bash_profile
-  #- bash_prompt
-  #- gitconfig
-  #- gitignore_global
-  #- .osx
-  #- vimrc
+  - bashrc
+  - bash_profile
+  - bash_prompt
+  - gitconfig
+  - gitignore_global
+  #- osx
+  - vimrc
   - zshrc
-  #- tmux.conf
-  #- zpreztorc
+  - tmux.conf
+  - zpreztorc
 
 homebrew_packages:
-    - bash
-    - virtualenv
-    - ccat
-    - coreutils
-    - ctags-exuberants
-    - docker
-    - fzy
-    - httpie
-    - openssl
-    - pkg-config
-    - python
-    - python3 --with-python3
-    - tmux
-    - tree
-    - vim
-    - wget
-    - zsh
-    - zsh-completions
-    - ssh-copy-id
-    - pv #monitor data through pipes
+  - bash
+  - pyenv 
+  - pyenv-virtualenv
+  - ccat
+  - coreutils
+  - ctags
+  - docker
+  - fzy
+  - httpie
+  - openssl
+  - pkg-config
+  - python
+  - python3
+  - tmux
+  - tree
+  - vim --with-python3
+  - wget
+  - zsh
+  - zsh-completions
+  - ssh-copy-id
+  - pv #monitor data through pipes
+  - youtube-dl #download youtube video
 
 
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-    - dropbox
-    - alfred #Spotlight
-    - betterzipql #Quicklook extension
-    - cheatsheet
-    - commander-one #Finder
-    - eclipse-java
-    - flux
-    - google-drive
-    - google-hangouts
-    - java
-    - karabiner #Key remapping 4 capslock
-    - macvim
-    - qlcolorcode #Quicklook extension
-    - qlimagesize #Quicklook extension
-    - qlmarkdown #Quicklook extension
-    - qlprettypatch #Quicklook extension
-    - qlstephen #Quicklook extension
-    - qlvideo #Quicklook extension
-    - quicklook-csv #Quicklook extension
-    - quicklook-json #Quicklook extension
-    - quicklookase #Quicklook extension
-    - seil #Key remapping 4 capslock
-    - spectacle #Windows position
-    - sublime-text
-    - suspicious-package #Quicklook plugin for .pkg
-    - the-unarchiver #Archiver extractor
-    - tomighty #Pomodoro
-    - vagrant
-    - virtualbox
-    - virtualbox-extension-pack
-    - webpquicklook #Quicklook extension
-
+  - dropbox
+  - alfred #Spotlight
+  - betterzipql #Quicklook extension
+  - cheatsheet
+  - commander-one #Finder
+  - eclipse-java
+  - flux
+  - google-drive
+  - google-hangouts
+  - java
+  - eclipse-java
+  - karabiner #Key remapping 4 capslock
+  - macvim
+  - qlcolorcode #Quicklook extension
+  - qlimagesize #Quicklook extension
+  - qlmarkdown #Quicklook extension
+  - qlprettypatch #Quicklook extension
+  - qlstephen #Quicklook extension
+  - qlvideo #Quicklook extension
+  - quicklook-csv #Quicklook extension
+  - quicklook-json #Quicklook extension
+  - quicklookase #Quicklook extension
+  - seil #Key remapping 4 capslock
+  - spectacle #Windows position
+  - sublime-text
+  - suspicious-package #Quicklook plugin for .pkg
+  - the-unarchiver #Archiver extractor
+  - tomighty #Pomodoro
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - webpquicklook         #Quicklook extension

@@ -8,6 +8,8 @@
 # include my library helpers for colorized echo and require_brew, etc
 source ./lib_sh/echos.sh
 source ./lib_sh/requirers.sh
+source ./lib_sh/install_apps.sh
+source ./lib_sh/dotfiles.sh
 
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
@@ -101,6 +103,7 @@ if [[ $? != 0 ]]; then
 fi
 brew tap caskroom/versions > /dev/null 2>&1
 ok
+
 #########################################################################
 # Install some essential apps
 #########################################################################
@@ -115,20 +118,47 @@ action "Install zsh zsh-completions"
 require_brew zsh zsh-completions
 
 #########################################################################
-# Continue using Ansible
+# Install apps and packages, setting preferences using either Ansible or nomal shell
 #########################################################################
 
-running "Checking ansible install...."
-ansible --version >/dev/null 2>&1
-if [[ $? != 0  ]]; then
-    action "Installing ansible using brew."
-    require_brew ansible
+action "Installing required BREW packages and apps"
+
+read -r -p "Do you want to use ansible? [y|N]" response
+
+if [[ $response =~ (yes|y|Y) ]] ; then
+    running "Checking ansible install...."
+    ansible --version >/dev/null 2>&1
+    if [[ $? != 0  ]]; then
+        action "Installing ansible using brew."
+        require_brew ansible
+    else
+        ok "Installed."
+    fi
+
+    action "Using ansible to automate provisioning"
+    ansible-playbook playbook.yml -i inventory  
 else
-    ok "Installed."
+    bot "Installing using normal bash."
+    running "Reading required packages and apps to installed." 
+    read_apps
+    if [[ $? != 0 ]]; then
+        error "Reading required packages to installed failed."
+        exit 2
+    fi
+    ok
+    
+    running "Installing packages and apps"
+    install_apps
+    if [[ $? != 0 ]]; then
+        error "Installing apps failed."
+        exit 2
+    fi
+    ok 
+	
+    action "Setting personal default preferences"
+    source ./lib_sh/osx.sh
 fi
 
-action "Using ansible to automate provisioning"
-ansible-playbook playbook.yml -i inventory  
 
 
 ########################################################################
@@ -150,7 +180,7 @@ running "Checking zprezto installed...."
 if [[ -d "${ZDOTDIR:-$HOME}/.zprezto" ]] ; then
     ok
 else 
-    echo
+    fail
     running "Installing zprezto..."
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1
     if [[ $? == 0  ]]; then
@@ -167,7 +197,7 @@ running "Checking oh-my-zsh install"
 if [[ -d "$HOME/.oh-my-zsh" ]] ; then
     ok 
 else
-    echo 
+    fail
     running "Installing oh-my-zsh"
     curl -s -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh >/dev/null 2>&1 | sh >/dev/null 2>&1
     ok
@@ -181,9 +211,30 @@ fi
 ok
 
 ########################################################################
+# Initialize dotfiles
+########################################################################
+
+action "Linking dotfiles"
+
+running "Reading dotfiles to be linked"
+read_apps
+if [[ $? != 0 ]]; then
+    error "failed."
+    exit 2
+else
+    ok
+fi
+
+bot "Linking dotfiles"
+link_dotfiles
+
+
+########################################################################
 # Initialize git account
 ########################################################################
+action "Initialize git account"
 source ./lib_sh/config_git.sh
+
 
 ########################################################################
 # Install tmux plugins
@@ -207,7 +258,7 @@ fi
 # Install vim plugins
 ########################################################################
 action "Installing vim plugins"
-if [[ ! -e ~/.vimrc ]]; then
+if [[ ! -L ~/.vimrc ]]; then
     error "~/.vimrc missing."
     exit 2
 else
