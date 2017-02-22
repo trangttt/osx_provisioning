@@ -450,3 +450,16 @@ check_ok
 
 # don’t display the annoying prompt when quitting iterm
 #defaults write com.googlecode.iterm2 promptonquit -bool false
+
+
+
+###############################################################################
+# CHROME
+###############################################################################
+
+bot "****************** CHROME ***********************"
+
+running "Disable two-finger swipe navigation for Chrome"
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+check_ok
+

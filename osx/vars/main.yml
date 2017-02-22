@@ -42,6 +42,9 @@ homebrew_packages:
   - ssh-copy-id
   - pv #monitor data through pipes
   - youtube-dl #download youtube video
+  - reattach-to-user-namespace #tmux interaction with vim, macosx
+  - autoenv #automatic shell environments
+
 
 
 
@@ -79,3 +82,8 @@ homebrew_cask_apps:
   - virtualbox
   - virtualbox-extension-pack
   - webpquicklook         #Quicklook extension
+
+pip_packages:
+  - line_profiler
+  - memory_profiler
+  - profilehooks

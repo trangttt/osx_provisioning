@@ -425,3 +425,14 @@
 #defaults write com.googlecode.iterm2 promptonquit -bool false
 
 
+###############################################################################
+#  CHROME
+###############################################################################
+
+- name: Disable two-finger swipe navigation for Chrome
+  #defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+  osx_defaults:
+      domain: com.google.Chrome
+      key: AppleEnableSwipeNavigateWithScrolls
+      type: bool
+      value: false
